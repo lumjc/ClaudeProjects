@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lum Jun Chi — Product Manager</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0D1B2A;
+      --ink: #1A2535;
+      --teal: #1B9E8A;
+      --teal-light: #E6F5F3;
+      --sand: #F5F0E8;
+      --warm-white: #FAFAF7;
+      --muted: #6B7280;
+      --border: #E5E1D8;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--warm-white);
+      color: var(--ink);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(250,250,247,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-name {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      color: var(--navy);
+      letter-spacing: 0.01em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.875rem;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--teal); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 100px 2rem 4rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .hero-content { max-width: 700px; }
+    .hero-tag {
+      display: inline-block;
+      background: var(--teal-light);
+      color: var(--teal);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 2px;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      color: var(--navy);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--teal);
+    }
+    .hero-bio {
+      font-size: 1.1rem;
+      color: var(--muted);
+      font-weight: 300;
+      max-width: 540px;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 24px;
+      border-radius: 3px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--navy);
+      color: #fff;
+    }
+    .btn-primary:hover { background: var(--ink); transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent;
+      color: var(--navy);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--navy); }
+    .hero-stats {
+      display: flex; gap: 2.5rem; margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .stat-num {
+      font-family: var(--serif);
+      font-size: 2rem;
+      color: var(--navy);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 4px;
+    }
+
+    /* SECTIONS */
+    section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.75rem;
+    }
+    .section-heading {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 3rem;
+    }
+
+    /* EXPERIENCE */
+    .exp-list { display: flex; flex-direction: column; gap: 2.5rem; }
+    .exp-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 2rem;
+    }
+    .exp-meta { padding-top: 4px; }
+    .exp-dates {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .exp-company {
+      font-size: 0.85rem;
+      color: var(--teal);
+      font-weight: 500;
+      margin-top: 4px;
+    }
+    .exp-body {}
+    .exp-title {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+    .exp-highlights {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .exp-highlights li {
+      font-size: 0.9rem;
+      color: var(--muted);
+      padding-left: 1.25rem;
+      position: relative;
+      line-height: 1.6;
+    }
+    .exp-highlights li::before {
+      content: '—';
+      position: absolute; left: 0;
+      color: var(--teal);
+      font-size: 0.8rem;
+    }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1rem; }
+    .tag {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 4px 10px;
+      border-radius: 2px;
+      background: var(--sand);
+      color: var(--ink);
+    }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+    .skill-card {
+      background: var(--sand);
+      border-radius: 4px;
+      padding: 1.5rem;
+    }
+    .skill-card-icon {
+      width: 36px; height: 36px;
+      background: var(--teal-light);
+      border-radius: 3px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .skill-card-icon svg { width: 18px; height: 18px; stroke: var(--teal); fill: none; stroke-width: 1.5; }
+    .skill-card-title {
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+    .skill-card-items {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .contact-copy {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+    .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+      color: var(--ink);
+      font-size: 0.9rem;
+      padding: 14px 18px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+    .contact-link:hover { border-color: var(--teal); color: var(--teal); }
+    .contact-link svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.5; flex-shrink: 0; }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ANIMATIONS */
+    .fade-in {
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 0.7s ease forwards;
+    }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in:nth-child(1) { animation-delay: 0.1s; }
+    .fade-in:nth-child(2) { animation-delay: 0.2s; }
+    .fade-in:nth-child(3) { animation-delay: 0.35s; }
+    .fade-in:nth-child(4) { animation-delay: 0.5s; }
+    .fade-in:nth-child(5) { animation-delay: 0.65s; }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      .exp-item { grid-template-columns: 1fr; gap: 0.25rem; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1.5rem; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <span class="nav-name">Lum Jun Chi</span>
+    <ul class="nav-links">
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-content">
+      <div class="fade-in"><span class="hero-tag">Product Manager · Singapore</span></div>
+      <div class="fade-in">
+        <h1>Building products that <em>move</em> markets.</h1>
+      </div>
+      <div class="fade-in">
+        <p class="hero-bio">
+          I lead end-to-end product delivery in fintech, crypto, and payments —
+          turning complex problems into clean, scalable solutions that users love and businesses scale on.
+        </p>
+      </div>
+      <div class="fade-in hero-actions">
+        <a href="#contact" class="btn btn-primary">Get in touch</a>
+        <a href="https://www.linkedin.com/in/lumjc/" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
+      </div>
+      <div class="fade-in hero-stats">
+        <div>
+          <div class="stat-num">7-fig</div>
+          <div class="stat-label">ARR Delivered</div>
+        </div>
+        <div>
+          <div class="stat-num">5+</div>
+          <div class="stat-label">Years in Fintech</div>
+        </div>
+        <div>
+          <div class="stat-num">30%</div>
+          <div class="stat-label">Onboarding Improvement</div>
+        </div>
+        <div>
+          <div class="stat-num">CAPM</div>
+          <div class="stat-label">PMI Certified</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="experience">
+    <p class="section-label">Career</p>
+    <h2 class="section-heading">Experience</h2>
+    <div class="exp-list">
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-dates">Oct 2023 – Present</div>
+          <div class="exp-company">OANDA</div>
+        </div>
+        <div class="exp-body">
+          <h3 class="exp-title">Product Manager</h3>
+          <ul class="exp-highlights">
+            <li>Led end-to-end launch of OANDA Prop Trader (APAC), achieving 7-figure ARR in year one.</li>
+            <li>Coordinated U.S. launch of FTMO Prop Trading platform, also delivering 7-figure ARR.</li>
+            <li>Designed and optimised KYC/AML onboarding flows, reducing onboarding time by 30%.</li>
+            <li>Built ITSM workflows and escalation frameworks, cutting incident resolution time by 40%.</li>
+            <li>Defined product KPIs and architected BigQuery data infrastructure for data-driven decisions.</li>
+            <li>Led payment integrations across APMs, crypto pay-ins and payouts.</li>
+          </ul>
+          <div class="tag-row">
+            <span class="tag">Roadmapping</span>
+            <span class="tag">KYC/AML</span>
+            <span class="tag">BigQuery</span>
+            <span class="tag">Payments</span>
+            <span class="tag">Agile</span>
+            <span class="tag">Jira</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-dates">Apr – Sep 2023</div>
+          <div class="exp-company">Binance</div>
+        </div>
+        <div class="exp-body">
+          <h3 class="exp-title">Wallet Operations Specialist</h3>
+          <ul class="exp-highlights">
+            <li>Designed wallet infrastructure for regional exchanges, improving transaction efficiency.</li>
+            <li>Contributed product and policy recommendations for IOSCO crypto regulatory frameworks.</li>
+            <li>Conducted Ethereum on-chain analysis for fund tracking and risk mitigation.</li>
+          </ul>
+          <div class="tag-row">
+            <span class="tag">Blockchain</span>
+            <span class="tag">Crypto</span>
+            <span class="tag">On-chain Analysis</span>
+            <span class="tag">Regulatory</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-dates">Feb 2022 – Mar 2023</div>
+          <div class="exp-company">Fazz Financial</div>
+        </div>
+        <div class="exp-body">
+          <h3 class="exp-title">Senior Product Operations Specialist</h3>
+          <ul class="exp-highlights">
+            <li>Automated OTC crypto/fiat trading workflows, improving processing speed and reducing manual effort.</li>
+            <li>Managed crypto treasury operations and produced stablecoin attestation reports for compliance.</li>
+            <li>Supported AML compliance and transaction reconciliation processes.</li>
+          </ul>
+          <div class="tag-row">
+            <span class="tag">OTC Trading</span>
+            <span class="tag">Treasury</span>
+            <span class="tag">AML</span>
+            <span class="tag">Stablecoins</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-dates">2020 – 2023</div>
+          <div class="exp-company">Trinide</div>
+        </div>
+        <div class="exp-body">
+          <h3 class="exp-title">Co-Founder</h3>
+          <ul class="exp-highlights">
+            <li>Secured $1M in funding to build a cryptocurrency wallet product from the ground up.</li>
+            <li>Led product strategy, competitive analysis, and go-to-market planning.</li>
+            <li>Managed development and launch of web applications end-to-end.</li>
+          </ul>
+          <div class="tag-row">
+            <span class="tag">0→1 Product</span>
+            <span class="tag">Fundraising</span>
+            <span class="tag">GTM Strategy</span>
+            <span class="tag">Crypto Wallet</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="skills">
+    <p class="section-label">Capabilities</p>
+    <h2 class="section-heading">Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-card-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        </div>
+        <div class="skill-card-title">Product Management</div>
+        <div class="skill-card-items">Roadmapping · PRDs · Feature Prioritization · Go-to-Market · Product Lifecycle</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        </div>
+        <div class="skill-card-title">Project Delivery</div>
+        <div class="skill-card-items">Agile · Scrum · Stakeholder Management · ITSM · CAPM Certified</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 9l-5 5-4-4-3 3"/></svg>
+        </div>
+        <div class="skill-card-title">Data & Analytics</div>
+        <div class="skill-card-items">SQL · BigQuery · KPI Dashboards · User Behavior Analytics · CSAT</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 000 20M12 2a14.5 14.5 0 010 20M2 12h20"/></svg>
+        </div>
+        <div class="skill-card-title">Domain Expertise</div>
+        <div class="skill-card-items">Fintech · Crypto · Payments · KYC/AML · Blockchain · DeFi</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <div class="skill-card-title">Tools</div>
+        <div class="skill-card-items">Jira · Confluence · HubSpot · Notion · BigQuery</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <div class="skill-card-title">Stakeholder & Ops</div>
+        <div class="skill-card-items">C-suite Alignment · Vendor SLAs · Cross-functional Teams · BAT</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <p class="section-label">Let's Talk</p>
+    <h2 class="section-heading">Get in touch</h2>
+    <div class="contact-grid">
+      <div>
+        <p class="contact-copy">
+          I'm currently open to Product Manager opportunities in fintech, crypto, and payments.
+          If you're building something interesting or have a role that might fit, I'd love to hear from you.
+        </p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:lumjc12@gmail.com" class="contact-link">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          lumjc12@gmail.com
+        </a>
+        <a href="https://www.linkedin.com/in/lumjc/" target="_blank" class="contact-link">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          linkedin.com/in/lumjc
+        </a>
+        <a href="tel:+6590694541" class="contact-link">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          +65 9069 4541
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Lum Jun Chi · Singapore</p>
+  </footer>
+
+</body>
+</html>
